@@ -92,7 +92,13 @@
                             </div>
 
                             <div class="row mt-2">
-                                <div class="col-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label><span style="color: red">*</span> Cidade:</label>
+                                        <input type="text" class="form-control" id="city" name="city" value="{{ @$objects['city'] ?? old('city') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col">
                                     <div class="form-group">
                                         <label><span style="color: red">*</span> Estado:</label>
                                         <input type="text" class="form-control" id="states" name="states" value="{{ @$objects['states'] ?? old('states') }}" required>

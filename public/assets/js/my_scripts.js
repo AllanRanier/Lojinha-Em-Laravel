@@ -76,10 +76,11 @@ function searchAddress() {
             $("#states").val("");
             $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(result) {
                 if (result.error == null) {
+                    console.log(result)
                     //Atualiza os campos com os valores da consulta.
                     $("#street").val(result.logradouro);
                     $("#district").val(result.bairro);
-                    $("#city").val(result.cidade);
+                    $("#city").val(result.localidade);
                     $("#states").val(result.uf);
                 }
             });

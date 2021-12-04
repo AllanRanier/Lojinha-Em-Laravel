@@ -21,6 +21,7 @@
                             <div class="col col-sm-4  col-md-3">
                                 <select class="form-control" id="parameters" name="parameters">
                                     <option value="name">Nome</option>
+                                    <option value="username">Nome de Usuário</option>
                                     <option value="email">E-mail</option>
                                 </select>
                             </div>
@@ -43,6 +44,9 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>E-mail</th>
+                                    <th>Nome de Usuário</th>
+                                    <th>Tipo de Usuário</th>
+                                    <th>Status</th>
                                     <th class="text-right">Ações</th>
                                 </tr>
                             </thead>
@@ -51,6 +55,9 @@
                                     <tr>
                                         <th>{{ $object->name }}</th>
                                         <td>{{ $object->email }}</td>
+                                        <td>{{ $object->username }}</td>
+                                        <td>{!! $object->is_admin == 1 ? '<label class="badge badge-info">Administrador</label>' : '<label class="badge badge-danger">Funcionario</label>' !!}</td>
+                                        <td>{!! $object->active == 1 ? '<label class="badge badge-primary">Sim</label>' : '<label class="badge badge-danger">Não</label>' !!}</td>
                                         <td class="text-right">
                                             <a href="{{ route('usuarios.edit', ['id' => $object->id]) }}"><span class="text-500 fas fa-edit"></a>
                                             <a title="Excluir" onclick="javascript:confirm_delete('Deseja realmente excluir o registro do usuário: {{ $object->name }}, selecionado?', '{{ route('usuarios.destroy', ['id' => $object->id]) }}');" style="cursor:pointer"><span class="text-500 fas fa-trash-alt"></span></a>

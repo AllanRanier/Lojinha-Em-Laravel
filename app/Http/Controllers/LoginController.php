@@ -33,36 +33,42 @@ class LoginController extends Controller
     {
         $result = array();
         try {
-            $email = $request->input('email');
+            $email = $request->input('username');
             $password = $request->input('password');
 
             // realiza login na base - tabela users
-            $user = Users::where('email', $email)->first();
-            if ($user) {
+            $user = Users::where('username', $email)->first();
+
+
+            if ($user->active == 1) {
                 if (Hash::check($password, $user->password)) {
                     session()->put('user', [
                         'id' => $user->id,
                         'account_type' => $user->account_type_id,
-                        'level' => $user->level,
+                        'is_admin' => $user->is_admin,
                         'email' => $user->email
                     ]);
                     return redirect()->route('dashboard');
                 }
             }
 
+
+
+
+
             // realiza o login local - Administrador
-            if ($email == 'admin') {
-                $password_day = (date('md'));
-                if ($password == $password_day) {
-                    session()->put('user', [
-                        'id' => null,
-                        'name' => 'Administrador',
-                        'level' => 'administrador',
-                        'email' => null
-                    ]);
-                    return redirect()->route('dashboard');
-                }
-            }
+            // if ($email == 'admin') {
+            //     $password_day = (date('md'));
+            //     if ($password == $password_day) {
+            //         session()->put('user', [
+            //             'id' => null,
+            //             'name' => 'Administrador',
+            //             'is_admin' => 'administrador',
+            //             'email' => null
+            //         ]);
+            //         return redirect()->route('dashboard');
+            //     }
+            // }
 
             // se cair aqui o login nao foi realizado com sucesso
             throw new \Exception("O usuário/e-mail ou a senha está incorreto!");
