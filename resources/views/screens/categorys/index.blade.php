@@ -50,7 +50,7 @@
                                         <th>{{ $object->name }}</th>
                                         <td class="text-right">
                                             <a href="{{ route('categorias.edit', ['id' => $object->id]) }}"><span class="text-500 fas fa-edit"></a>
-                                            <a title="Excluir" onclick="javascript:confirm_delete('Deseja realmente excluir o registro do usuário: {{ $object->name }}, selecionado?', '{{ route('categorias.destroy', ['id' => $object->id]) }}');" style="cursor:pointer"><span class="text-500 fas fa-trash-alt"></span></a>
+                                            <a title="Excluir" onclick="javascript:confirm_delete('Deseja realmente excluir o registro da categoria: {{ $object->name }}, selecionado?', '{{ route('categorias.destroy', ['id' => $object->id]) }}');" style="cursor:pointer"><span class="text-500 fas fa-trash-alt"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach

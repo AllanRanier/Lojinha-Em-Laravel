@@ -17,6 +17,21 @@ class SubCategorys extends Model
         'name',
     ];
 
+
+    static public function search($parameters, $information)
+    {
+        $search = SubCategorys::when(true, function ($query) use ($parameters, $information) {
+            // busca por parametros a query eloquent do laravel
+            switch ($parameters) {
+                default:
+                    $query->where($parameters, 'LIKE', "%$information%");
+                    $query->orderBy('id', 'ASC');
+            }
+        })->paginate(10);
+
+        return $search;
+    }
+
     public function category()
     {
         return $this->belongsTo(Categorys::class);

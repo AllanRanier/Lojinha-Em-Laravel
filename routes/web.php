@@ -80,14 +80,14 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::get('pesquisa', [CategorysController::class, 'query'])->name('categorias.query');
     });
 
-    Route::prefix('subcategoria')->group(function () {
-        Route::get('index', [SubCategorysController::class, 'index'])->name('subcategoria.index');
-        Route::get('create', [SubCategorysController::class, 'create'])->name('subcategoria.create');
-        Route::post('store', [SubCategorysController::class, 'store'])->name('subcategoria.store');
-        Route::post('update/{id}', [SubCategorysController::class, 'update'])->name('subcategoria.update');
-        Route::get('edit/{id}', [SubCategorysController::class, 'edit'])->name('subcategoria.edit');
-        Route::get('destroy/{id}', [SubCategorysController::class, 'destroy'])->name('subcategoria.destroy');
-        Route::get('pesquisa', [SubCategorysController::class, 'query'])->name('subcategoria.query');
+    Route::prefix('subcategorias')->group(function () {
+        Route::get('index', [SubCategorysController::class, 'index'])->name('subcategorias.index');
+        Route::get('create', [SubCategorysController::class, 'create'])->name('subcategorias.create');
+        Route::post('store', [SubCategorysController::class, 'store'])->name('subcategorias.store');
+        Route::post('update/{id}', [SubCategorysController::class, 'update'])->name('subcategorias.update');
+        Route::get('edit/{id}', [SubCategorysController::class, 'edit'])->name('subcategorias.edit');
+        Route::get('destroy/{id}', [SubCategorysController::class, 'destroy'])->name('subcategorias.destroy');
+        Route::get('pesquisa', [SubCategorysController::class, 'query'])->name('subcategorias.query');
     });
 
 });

@@ -16,8 +16,17 @@ class SubCategorysController extends Controller
     public function index()
     {
         $subcategorys = SubCategorys::latest()->paginate(10);
-        return view('screens.categorys.index', compact('subcategorys'));
+        return view('screens.subCategorys.index', compact('subcategorys'));
     }
+
+
+    public function query(Request $request)
+    {
+        $subcategorys = SubCategorys::search($request->parameters , $request->information);
+
+        return view('screens.subCategorys.index', compact('subcategorys'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +37,7 @@ class SubCategorysController extends Controller
     {
 
         $categorys = Categorys::orderBy('name', 'ASC')->get();
-        return view('screens.categorys.form', compact('categorys'));
+        return view('screens.subCategorys.form', compact('categorys'));
 
     }
 
@@ -65,7 +74,7 @@ class SubCategorysController extends Controller
     {
         $subcategorys = SubCategorys::find($id);
         $categorys = Categorys::orderBy('name', 'ASC')->get();
-        return view('screens.categorys.form', compact('categorys', 'subcategorys'));
+        return view('screens.subCategorys.form', compact('categorys', 'subcategorys'));
 
     }
 
