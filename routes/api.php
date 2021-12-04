@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategorysController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
@@ -30,4 +31,10 @@ Route::prefix('clientes')->group(function () {
     Route::get('get/email/{email}', [ClientsController::class, 'checkEmail']);
     Route::get('get/cpf/{cpf}', [ClientsController::class, 'checkCpf']);
 });
+
+
+Route::prefix('categorias')->group(function () {
+    Route::get('get/category/{category}', [CategorysController::class, 'checkCategory']);
+});
+
 

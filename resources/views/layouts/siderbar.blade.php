@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Lojinha</span>
     </a>
 
     <!-- Sidebar -->
@@ -28,46 +28,37 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-search"></i>
+                    <a href="{{ route('categorias.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-archive"></i>
                         <p>
-                            Search
-                            <i class="fas fa-angle-left right"></i>
+                            Categorias
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a href="pages/search/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Search</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/search/enhanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Enhanced</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
-        </nav>
 
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="{{ route('produtos.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-briefcase"></i>
+                            <p>
+                                SubCategoria
+                            </p>
+                        </a>
+                    </li>
+                </ul>
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
-
                 <li class="nav-item">
                     <a href="{{ route('produtos.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <i class="nav-icon fas fa-box"></i>
                         <p>
                             Produtos
                         </p>
                     </a>
                 </li>
-
             </ul>
         </nav>
 

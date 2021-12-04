@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorys;
 use App\Models\SubCategorys;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SubCategorysController extends Controller
      */
     public function index()
     {
-        //
+        $subcategorys = SubCategorys::latest()->paginate(10);
+        return view('screens.categorys.index', compact('subcategorys'));
     }
 
     /**
@@ -24,7 +26,10 @@ class SubCategorysController extends Controller
      */
     public function create()
     {
-        //
+
+        $categorys = Categorys::orderBy('name', 'ASC')->get();
+        return view('screens.categorys.form', compact('categorys'));
+
     }
 
     /**
@@ -35,51 +40,61 @@ class SubCategorysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        SubCategorys::create($request->all());
+
+        return redirect()->route('subcategorias.index')
+            ->with('success', 'Cadastrado com sucesso.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SubCategorys  $subCategorys
+     * @param  \App\Models\Categorys  $categorys
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategorys $subCategorys)
+    public function show(SubCategorys $categorys)
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubCategorys  $subCategorys
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategorys $subCategorys)
+    public function edit($id)
     {
-        //
+        $subcategorys = SubCategorys::find($id);
+        $categorys = Categorys::orderBy('name', 'ASC')->get();
+        return view('screens.categorys.form', compact('categorys', 'subcategorys'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubCategorys  $subCategorys
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubCategorys $subCategorys)
+    public function update(Request $request, $id)
     {
-        //
+        SubCategorys::find($id)->update($request->all());
+
+        return redirect()->route('subcategorias.index')
+            ->with('success', 'Atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SubCategorys  $subCategorys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubCategorys $subCategorys)
+    public function destroy($id)
     {
-        //
+        SubCategorys::withTrashed()->find($id)->delete();
+
+        return redirect()->route('subcategorias.index')
+            ->with('success', 'Deletado com sucesso.');
     }
+
+
 }

@@ -22,9 +22,9 @@ class ClientsController extends Controller
 
     public function query(Request $request)
     {
-        $Clients = Clients::search($request->parameters , $request->information);
+        $clients = Clients::search($request->parameters , $request->information);
 
-        return view('screens.clients.index', compact('Clients'));
+        return view('screens.clients.index', compact('clients'));
     }
 
     /**
@@ -54,7 +54,6 @@ class ClientsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Clients  $Clients
      * @return \Illuminate\Http\Response
      */
     public function show(Clients $Clients)
@@ -65,7 +64,6 @@ class ClientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Clients  $Clients
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,7 +76,6 @@ class ClientsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Clients  $Clients
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,7 +89,6 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Clients  $Clients
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

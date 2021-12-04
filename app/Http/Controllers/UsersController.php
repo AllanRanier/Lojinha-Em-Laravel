@@ -125,6 +125,7 @@ class UsersController extends Controller
 
     public function checkUserName($userName)
     {
+
         $getUserName = Users::getUserName($userName);
         return json_encode($getUserName);
     }

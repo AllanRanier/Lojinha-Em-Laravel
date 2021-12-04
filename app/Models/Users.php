@@ -24,14 +24,15 @@ class Users extends Model
 
     static public function getEmail($email)
     {
-        return Users::where('email', $email)->onlyTrashed()->first();
+        return Users::where('email', $email)->first();
     }
 
 
 
-    static public function getUserName($email)
+    static public function getUserName($userName)
     {
-        return Users::where('username', $email)->onlyTrashed()->first();
+        // dd($userName);
+        return Users::where('username', $userName)->first();
     }
 
 

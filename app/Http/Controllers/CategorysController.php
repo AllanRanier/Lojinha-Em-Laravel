@@ -14,7 +14,16 @@ class CategorysController extends Controller
      */
     public function index()
     {
-        //
+        $categorys = Categorys::latest()->paginate(10);
+        return view('screens.categorys.index', compact('categorys'));
+    }
+
+
+    public function query(Request $request)
+    {
+        $categorys = Categorys::search($request->parameters , $request->information);
+
+        return view('screens.categorys.index', compact('categorys'));
     }
 
     /**
@@ -24,7 +33,8 @@ class CategorysController extends Controller
      */
     public function create()
     {
-        //
+        return view('screens.categorys.form');
+
     }
 
     /**
@@ -35,7 +45,10 @@ class CategorysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Categorys::create($request->all());
+
+        return redirect()->route('categorias.index')
+            ->with('success', 'Cadastrado com sucesso.');
     }
 
     /**
@@ -48,38 +61,50 @@ class CategorysController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Categorys  $categorys
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorys $categorys)
+    public function edit($id)
     {
-        //
+        $categorys = Categorys::find($id);
+        return view('screens.categorys.form', compact('categorys'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categorys  $categorys
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorys $categorys)
+    public function update(Request $request, $id)
     {
-        //
+        Categorys::find($id)->update($request->all());
+
+        return redirect()->route('categorias.index')
+            ->with('success', 'Atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Categorys  $categorys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorys $categorys)
+    public function destroy($id)
     {
-        //
+        Categorys::withTrashed()->find($id)->delete();
+
+        return redirect()->route('categorias.index')
+            ->with('success', 'Deletado com sucesso.');
     }
+
+
+
+    public function checkCategory($categorys)
+    {
+        $getCategory = Categorys::getCategory($categorys);
+        return json_encode($getCategory);
+    }
+
 }

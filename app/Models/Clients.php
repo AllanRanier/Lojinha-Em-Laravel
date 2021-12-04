@@ -64,8 +64,21 @@ class Clients extends Model
 
     static public function getEmail($email)
     {
-        return Clients::where('email', $email)->onlyTrashed()->first();
+        return Clients::where('email', $email)->first();
     }
 
+    static public function search($parameters, $information)
+    {
+        $search = Clients::when(true, function ($query) use ($parameters, $information) {
+            // busca por parametros a query eloquent do laravel
+            switch ($parameters) {
+                default:
+                    $query->where($parameters, 'LIKE', "%$information%");
+                    $query->orderBy('id', 'ASC');
+            }
+        })->paginate(10);
+
+        return $search;
+    }
 
 }

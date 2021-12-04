@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Cadastro de Alunos</h1>
+                            <h1>Cadastro de Usuários</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -105,7 +105,7 @@
                             </div>
                             <div class="mt-2" role="tabpanel">
                                 <button type="submit" class="btn btn-sm btn-success me-1 mb-1">Salvar</button>
-                                <a href="{{ url('/usuarios/index') }}"
+                                <a href="{{ route('usuarios.index') }}"
                                     class="btn btn-sm btn-default me-1 mb-1">Voltar</a>
                             </div>
                         </form>

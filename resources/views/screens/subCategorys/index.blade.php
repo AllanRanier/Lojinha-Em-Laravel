@@ -1,4 +1,5 @@
 @extends('base')
+
 @section('content')
     <!-- Begin Page Content -->
     <div class="container">
@@ -7,7 +8,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Listas de Clientes</h1>
+                            <h1>Listas de Categorias</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -15,12 +16,11 @@
             <div class="card shadow mb-2">
                 <div class="card-header bg-light">
 
-                    <form action="{{ route('clientes.query') }}" method="GET">
+                    <form action="{{ route('categorias.query') }}" method="GET">
                         <div class="row mt-2">
                             <div class="col col-sm-4  col-md-3">
                                 <select class="form-control" id="parameters" name="parameters">
-                                    <option value="name">Nome</option>
-                                    <option value="email">E-mail</option>
+                                    <option value="name">Categoria</option>
                                 </select>
                             </div>
                             <div class="col col-sm-4 col-md-3">
@@ -35,27 +35,22 @@
                     </form>
                 </div>
                 <div class="card-body">
+
                     <div class="table-responsive-md">
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Telefone/WhatsApp</th>
-                                    <th>E-mail</th>
-                                    <th>Cidade</th>
+                                    <th>Categoria</th>
                                     <th class="text-right">Ações</th>
                                 </tr>
                             </thead>
-                            @if (count($clients) > 0)
-                                @foreach ($clients as $key => $object)
+                            @if (count($categorys) > 0)
+                                @foreach ($categorys as $key => $object)
                                     <tr>
                                         <th>{{ $object->name }}</th>
-                                        <td>{{ $object->email }}</td>
-                                        <td>{{ $object->phone }}</td>
-                                        <td>{{ $object->city }}</td>
                                         <td class="text-right">
-                                            <a href="{{ route('clientes.edit', ['id' => $object->id]) }}"><span class="text-500 fas fa-edit"></a>
-                                            <a title="Excluir" onclick="javascript:confirm_delete('Deseja realmente excluir o registro do aluno: {{ $object->name }}, selecionado?', '{{ route('clientes.destroy', ['id' => $object->id]) }}');" style="cursor:pointer"><span class="text-500 fas fa-trash-alt"></span></a>
+                                            <a href="{{ route('categorias.edit', ['id' => $object->id]) }}"><span class="text-500 fas fa-edit"></a>
+                                            <a title="Excluir" onclick="javascript:confirm_delete('Deseja realmente excluir o registro do usuário: {{ $object->name }}, selecionado?', '{{ route('categorias.destroy', ['id' => $object->id]) }}');" style="cursor:pointer"><span class="text-500 fas fa-trash-alt"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,11 +65,12 @@
                     </div>
                     <div class="row flex-between-end mt-3  justify-content-end">
                         <div class="col-auto align-self-right small mt-1">
-                            <b>Total Registros:</b> Geral ({{ $clients->total() }}).
+                            <b>Total Registros:</b> Geral ({{ $categorys->total() }}).
                         </div>
                         <div class="col-auto align-self-left">
+
                             <div class="pagination pagination-sm">
-                                {{ $clients->links('pagination::bootstrap-4') }}
+                                {{ $categorys->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>
@@ -83,8 +79,8 @@
                     <div class="tab-pane preview-tab-pane active" role="tabpanel"
                         aria-labelledby="tab-dom-04c45e1b-d354-416b-80de-73a934cf53bc"
                         id="dom-04c45e1b-d354-416b-80de-73a934cf53bc">
-                        <a href="{{ route('clientes.create') }}" class="btn btn-sm btn-primary me-1 mb-1">Novo Clientes</a>
-                        <a href="{{ route('clientes.index') }}" class="btn btn-sm btn-info me-1 mb-1">Atualizar</a>
+                        <a href="{{ route('categorias.create') }}" class="btn btn-sm btn-primary me-1 mb-1">Nova Categoria</a>
+                        <a href="{{ route('categorias.index') }}" class="btn btn-sm btn-info me-1 mb-1">Atualizar</a>
                         <a href="javascript:history.back()" class="btn btn-sm btn-default me-1 mb-1">Voltar</a>
                     </div>
                 </div>

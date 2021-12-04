@@ -25,32 +25,5 @@
                     })
             }
         })
-
-        $('#username').blur(function() {
-            let username = $(this).val();
-            if (this.value) {
-                $.ajax({
-                        url: "/api/usuarios/get/username/" + username,
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            username: username
-                        }
-                    })
-                    .done(function(result) {
-                        if (result != null) {
-                            console.log('aqui é invalido')
-                            $('#username').addClass("is-invalid");
-                            $('#username_valido').removeClass("d-block").addClass("d-none");
-                            $('#username_invalido').removeClass("d-none").addClass("d-block");
-                        } else {
-                            $('#username').removeClass("is-invalid"); //.addClass("is-valid")
-                            $('#username_invalido').removeClass("d-block").addClass("d-none");
-                        }
-                    }).fail(function(e) {
-                        console.log(e);
-                    })
-            }
-        })
     });
 </script>
