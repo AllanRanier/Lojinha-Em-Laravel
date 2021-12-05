@@ -26,8 +26,8 @@ class CreateProductsTable extends Migration
             $table->integer('qta');
             $table->string('image', 60);
             $table->longText('details');
-            $table->integer('amount');
-            
+            $table->integer('value');
+
             $table->softDeletes();
             $table->timestamps();
         });
